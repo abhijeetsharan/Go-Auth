@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"log"
 
 	"github.com/abhijeetsharan/go-auth/database"
@@ -13,6 +14,11 @@ func main() {
 
 	// Initialize a new Fiber app
 	app := fiber.New()
+
+	app.Use(cors.New(cors.Config{
+		AllowOrigins:     "*",
+		AllowCredentials: false,
+	}))
 
 	routes.Setup(app)
 	// Start the server on port 3000
